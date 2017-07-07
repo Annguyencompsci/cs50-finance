@@ -37,10 +37,6 @@ Session(app)
 # configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))
-    app.run(host="0.0.0.0", port = port)
-
 @app.route("/")
 @login_required
 def index():
@@ -291,3 +287,7 @@ def sell():
             price = price,
         )
         return redirect(url_for("index"))
+        
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port = port)
