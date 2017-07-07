@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Rankings
+{% endblock %}
+
+{% block main %}
+    <div class = "table-responsive">
+        <table class = "table table-striped">
+            <thead>
+                <tr>
+                    <th>Ranking</th>
+                    <th>Username</th>
+                    <th>Shares</th>
+                    <th>Cash</th>
+                    <th>Total after stock</th>
+                </tr>
+            </thead>
+            <tfoot {% if ranking %} class = "info" {% endif %}>
+                <td><strong>{{ranking}}</strong></td>
+                <td><strong>{{name}}</strong></td>
+                <td><strong>{{shares}}</strong></td>
+                <td><strong>{{cash}}</strong></td>
+                <td><strong>{{total}}</strong></td>
+            </tfoot>
+            <tbody>
+                {% for user in users %}
+                    <tr {% if user["isPlayer"] %} class = "info" {% endif %}>
+                        <td><strong>{{user["ranking"]}}</strong></td>
+                        <td>{{user["username"]}}</td>
+                        <td>{{user["shares"]}}</td>
+                        <td>{{user["cash"]}}</td>
+                        <td>{{user["total"]}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

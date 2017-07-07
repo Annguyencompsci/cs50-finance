@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Finance
+{% endblock %}
+
+{% block main %}
+    {% block message %} {% endblock %}
+    <div class = "table-responsive">
+        <table class = "table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <td colspan = 4></td>
+                <td><strong>{{sum}}</strong></td>
+            </tfoot>
+            <tbody>
+                {% for purchase in purchases %}
+                    <tr>
+                        <td>{{purchase["symbol"]}}</td>
+                        <td>{{purchase["name"]}}</td>
+                        <td>{{purchase["shares"]}}</td>
+                        <td>{{purchase["price"]}}</td>
+                        <td>{{purchase["sum"]}}</td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan = 4>Cash</td>
+                    <td>{{balance}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
