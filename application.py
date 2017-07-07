@@ -242,7 +242,7 @@ def register():
         if request.form["password"] != request.form["passwordver"]:
             return apology("Passwords doesn't match")
         if not db.execute("INSERT INTO users (username, hash) VALUES (:name, :hash)", name = request.form["username"], 
-            hash = pwd_context.encrypt(request.form["password"])):
+            hash = pwd_context.hash(request.form["password"])):
                 return apology("Username already exist! SAD")
         return redirect(url_for("index"))
     
