@@ -5,6 +5,7 @@ from passlib.apps import custom_app_context as pwd_context
 from tempfile import mkdtemp
 import math
 import os
+import psycopg2
 
 from helpers import *
 
@@ -35,7 +36,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # configure CS50 Library to use SQLite database
-db = SQL("postgres://xppissjheuamfd:83ccf7f0af9ea9747ede51915bd468377ae8a0db22cc63879188bcf9cc8dbe91@ec2-107-21-113-16.compute-1.amazonaws.com:5432/d6sbo6foocj4ct")
+db = SQL(os.environ.get("DATABASE_URL") or "sqlite:///finance.db")
 
 @app.route("/")
 @login_required
